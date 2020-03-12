@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {TextField, Button} from '@material-ui/core';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <body className="App-body">
+        <Button variant="contained">Calculate</Button>
+        <form noValidate autoComplete="off">
+          <TextField id="number-of-devices" label="Number of Devices" variant="outlined" />
+          <TextField id="mb-per-device-per-day" label="MB of data/day/device" variant="outlined" />
+        </form>
+      </body>
     </div>
   );
 }
