@@ -6,9 +6,9 @@ export default class DataCreditCalculator extends Component {
         costResult: null,
         numberOfDevices: 100,
         dataPerDevice: 1,
-        dataUnit: "MB",
+        dataUnit: "Bytes",
         timeUnit: "day",
-        dataUnits: ["KB", "MB", "GB"],
+        dataUnits: ["Bytes", "KB", "MB", "GB"],
         timeUnits: ["day", "week", "month", "year"],
     };
 
@@ -58,14 +58,14 @@ export default class DataCreditCalculator extends Component {
                     Number of Devices
                     <input
                         name="number of devices"
-                        type="text"
+                        type="number"
                         value={this.state.numberOfDevices}
                         onChange={this.inputHandler}
                     />
                     Data
                     <input
                         name="data per device"
-                        type="text"
+                        type="number"
                         value={this.state.dataPerDevice}
                         onChange={this.inputHandler}
                     />
