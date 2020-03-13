@@ -19,8 +19,12 @@ export default class DataCreditCalculator extends Component {
     calculateHandler = () => {
         if (this.state.numberOfDevices > 0) {
 
-            this.setState({ costResult: "$100" })
+            console.log(this.state.numberOfDevices);
+            console.log(this.state.dataPerDevice);
+            console.log(this.state.dataUnit);
+            console.log(this.state.timeUnit);
 
+            this.setState({ costResult: "$100" })
         } else {
             this.setState({ costResult: "Please enter a positive number of devices" })
         }
@@ -81,10 +85,10 @@ export default class DataCreditCalculator extends Component {
 
                     <button onClick={this.calculateHandler}>Calculate</button>
                 </div>
+                </h2>
                 {this.state.costResult && 
                     <h3>{this.state.costResult}</h3>
                 }
-                </h2>
             </div>
         );
     }
