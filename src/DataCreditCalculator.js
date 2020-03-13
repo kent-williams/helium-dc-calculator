@@ -30,6 +30,16 @@ export default class DataCreditCalculator extends Component {
         }
     };
 
+    // Updates the states based on the input that was changed
+    inputHandler = (event) => {
+        if (event.target.name === "number of devices") {
+            this.setState({ numberOfDevices: event.target.value })
+        }
+        if (event.target.name === "data per device") {
+            this.setState({ dataPerDevice: event.target.value })
+        }
+    }
+
     // Updates the states based on the dropdown that was changed
     selectHandler = (event) => {
         if (event.target.name === "data unit") {
@@ -50,19 +60,15 @@ export default class DataCreditCalculator extends Component {
                         name="number of devices"
                         type="text"
                         value={this.state.numberOfDevices}
-                        onChange={event =>
-                            this.setState({ amount: event.target.value })
-                        }>
-                    </input>
+                        onChange={this.inputHandler}
+                    />
                     Data
                     <input
                         name="data per device"
                         type="text"
                         value={this.state.dataPerDevice}
-                        onChange={event =>
-                            this.setState({ amount: event.target.value })
-                        }>
-                    </input>
+                        onChange={this.inputHandler}
+                    />
                     <select
                         name="data unit"
                         onChange={(event) => this.selectHandler(event)}
