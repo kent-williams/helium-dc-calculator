@@ -41,6 +41,7 @@ export default class DataCreditCalculator extends Component {
             <div className="DataCreditCalculator">
                 <h2><span>Data Credit Calculator </span> 
                 <div className="Form">
+                    Number of Devices
                     <input
                         name="number of devices"
                         type="text"
@@ -49,7 +50,7 @@ export default class DataCreditCalculator extends Component {
                             this.setState({ amount: event.target.value })
                         }>
                     </input>
-
+                    Data
                     <input
                         name="data per device"
                         type="text"
@@ -58,7 +59,6 @@ export default class DataCreditCalculator extends Component {
                             this.setState({ amount: event.target.value })
                         }>
                     </input>
-
                     <select
                         name="data unit"
                         onChange={(event) => this.selectHandler(event)}
@@ -68,7 +68,7 @@ export default class DataCreditCalculator extends Component {
                             <option key={cur}>{cur}</option>
                         ))}
                     </select>
-
+                    per
                     <select
                         name="time unit"
                         onChange={(event) => this.selectHandler(event)}
