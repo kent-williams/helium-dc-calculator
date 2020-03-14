@@ -17,7 +17,7 @@ export default class DataCreditCalculator extends Component {
     }
  
     calculateHandler = () => {
-        if (this.state.numberOfDevices > 0) {
+        if (this.state.numberOfDevices > 0 && this.state.dataPerDevice > 0) {
 
             console.log(this.state.numberOfDevices);
             console.log(this.state.dataPerDevice);
