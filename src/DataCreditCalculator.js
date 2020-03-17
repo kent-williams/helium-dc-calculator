@@ -18,6 +18,11 @@ export default class DataCreditCalculator extends Component {
     // Initializes anything
     componentDidMount() {
     }
+
+    currencyFormat(num) {
+        return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+ 
  
     calculateHandler = () => {
         if (this.state.numberOfDevices > 0 && this.state.dataPerDevice > 0) {
@@ -101,7 +106,7 @@ export default class DataCreditCalculator extends Component {
                 </div>
                 </h2>
                 {this.state.costResult && 
-                    <h3>${this.state.costResult.toPrecision(8)} a {this.state.timeUnit}</h3>
+                    <h3>{this.currencyFormat(this.state.costResult)} a {this.state.timeUnit}</h3>
                 }
             </div>
         );
