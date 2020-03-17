@@ -41,9 +41,9 @@ export default class DataCreditCalculator extends Component {
             console.log(this.state.dataUnit);
             console.log(this.state.timeUnit);
 
-            this.setState({ costResult: totalCost })
+            this.setState({ costResult: this.currencyFormat(totalCost) + ' a ' + this.timeUnitFixed})
         } else {
-            this.setState({ costResult: "Please enter a positive number of devices and data" })
+            this.setState({ costResult: "Please enter a positive number of devices and data." })
         }
     };
 
@@ -78,6 +78,7 @@ export default class DataCreditCalculator extends Component {
                         type="number"
                         value={this.state.numberOfDevices}
                         onChange={this.inputHandler}
+                        min="1"
                     />
                     Data
                     <input
@@ -85,6 +86,7 @@ export default class DataCreditCalculator extends Component {
                         type="number"
                         value={this.state.dataPerDevice}
                         onChange={this.inputHandler}
+                        min="1"
                     />
                     <select
                         name="data unit"
@@ -109,7 +111,7 @@ export default class DataCreditCalculator extends Component {
                 </div>
                 </h2>
                 {this.state.costResult && 
-                    <h3>{this.currencyFormat(this.state.costResult)} a {this.timeUnitFixed}</h3>
+                    <h3>{this.state.costResult}</h3>
                 }
             </div>
         );
