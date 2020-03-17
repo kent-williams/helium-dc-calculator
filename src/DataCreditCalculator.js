@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import './DataCreditCalculator.css';
 
+const dataCreditValue = 0.00001;
+const bytesPerHeliumPacket = 24;
+
 export default class DataCreditCalculator extends Component {
     state = {
         costResult: null,
@@ -19,12 +22,14 @@ export default class DataCreditCalculator extends Component {
     calculateHandler = () => {
         if (this.state.numberOfDevices > 0 && this.state.dataPerDevice > 0) {
 
-            var totalCost = 0;
+            var totalBytes = this.state.dataPerDevice * this.state.dataUnits[this.state.dataUnit]; 
+            var totalDays = this.state.timeUnits[this.state.timeUnit];
+            var totalCost = (dataCreditValue * this.state.numberOfDevices * totalBytes * totalDays) / bytesPerHeliumPacket;
+
             console.log(this.state.numberOfDevices);
             console.log(this.state.dataPerDevice);
             console.log(this.state.dataUnit);
             console.log(this.state.timeUnit);
-
 
             this.setState({ costResult: totalCost })
         } else {
@@ -94,7 +99,7 @@ export default class DataCreditCalculator extends Component {
                 </div>
                 </h2>
                 {this.state.costResult && 
-                    <h3>{this.state.costResult}</h3>
+                    <h3>${this.state.costResult.toPrecision(2)} a {this.state.timeUnit}</h3>
                 }
             </div>
         );
