@@ -43,7 +43,7 @@ export default class DataCreditCalculator extends Component {
 
             this.setState({ costResult: totalCost })
         } else {
-            this.setState({ costResult: "Please enter a positive number of devices and " })
+            this.setState({ costResult: "Please enter a positive number of devices and data" })
         }
     };
 
