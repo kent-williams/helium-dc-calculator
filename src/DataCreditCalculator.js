@@ -99,7 +99,7 @@ export default class DataCreditCalculator extends Component {
                 </div>
                 </h2>
                 {this.state.costResult && 
-                    <h3>${this.state.costResult.toPrecision(2)} a {this.state.timeUnit}</h3>
+                    <h3>${this.state.costResult.toPrecision(8)} a {this.state.timeUnit}</h3>
                 }
             </div>
         );
