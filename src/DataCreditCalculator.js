@@ -7,7 +7,7 @@ export default class DataCreditCalculator extends Component {
         numberOfDevices: 100,
         dataPerDevice: 1,
         dataUnit: "Bytes",
-        timeUnit: "day",
+        timeUnit: "Day",
         dataUnits: {"Bytes": 1, "KB": 1000, "MB": 1000000, "GB": 1000000000},
         timeUnits: {"Day": 1, "Week": 7, "Month": 29.53059, "Year": 365},
     };
