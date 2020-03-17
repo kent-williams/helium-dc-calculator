@@ -15,6 +15,9 @@ export default class DataCreditCalculator extends Component {
         timeUnits: {"Day": 1, "Week": 7, "Month": 29.53059, "Year": 365},
     };
 
+    // Time Unit Output, does not need to re-render until user calculates
+    timeUnitFixed = "Day";
+
     // Initializes anything
     componentDidMount() {
     }
@@ -22,14 +25,15 @@ export default class DataCreditCalculator extends Component {
     currencyFormat(num) {
         return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
- 
- 
+  
     calculateHandler = () => {
         if (this.state.numberOfDevices > 0 && this.state.dataPerDevice > 0) {
 
             var totalBytes = this.state.dataPerDevice * this.state.dataUnits[this.state.dataUnit]; 
             var totalDays = this.state.timeUnits[this.state.timeUnit];
             var totalCost = (dataCreditValue * this.state.numberOfDevices * totalBytes * totalDays) / bytesPerHeliumPacket;
+
+            this.timeUnitFixed = this.state.timeUnit;
 
             console.log(this.state.numberOfDevices);
             console.log(this.state.dataPerDevice);
@@ -38,7 +42,7 @@ export default class DataCreditCalculator extends Component {
 
             this.setState({ costResult: totalCost })
         } else {
-            this.setState({ costResult: "Please enter a positive number of devices" })
+            this.setState({ costResult: "Please enter a positive number of devices and " })
         }
     };
 
@@ -50,7 +54,6 @@ export default class DataCreditCalculator extends Component {
         if (event.target.name === "data per device") {
             this.setState({ dataPerDevice: event.target.value })
         }
-        this.calculateHandler();
     }
 
     // Updates the states based on the dropdown that was changed
@@ -61,7 +64,6 @@ export default class DataCreditCalculator extends Component {
         if (event.target.name === "time unit") {
             this.setState({ timeUnit: event.target.value })
         }
-        this.calculateHandler();
     }
 
     render() {
@@ -106,7 +108,7 @@ export default class DataCreditCalculator extends Component {
                 </div>
                 </h2>
                 {this.state.costResult && 
-                    <h3>{this.currencyFormat(this.state.costResult)} a {this.state.timeUnit}</h3>
+                    <h3>{this.currencyFormat(this.state.costResult)} a {this.timeUnitFixed}</h3>
                 }
             </div>
         );
