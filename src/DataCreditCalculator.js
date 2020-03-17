@@ -45,6 +45,7 @@ export default class DataCreditCalculator extends Component {
         if (event.target.name === "data per device") {
             this.setState({ dataPerDevice: event.target.value })
         }
+        this.calculateHandler();
     }
 
     // Updates the states based on the dropdown that was changed
@@ -55,6 +56,7 @@ export default class DataCreditCalculator extends Component {
         if (event.target.name === "time unit") {
             this.setState({ timeUnit: event.target.value })
         }
+        this.calculateHandler();
     }
 
     render() {
