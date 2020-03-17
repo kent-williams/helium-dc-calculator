@@ -18,10 +18,6 @@ export default class DataCreditCalculator extends Component {
     // Time Unit Output, does not need to re-render until user calculates
     timeUnitFixed = "Day";
 
-    // Initializes anything
-    componentDidMount() {
-    }
-
     currencyFormat(num) {
         if (num > 1) {
             return '$' + num.toFixed(6).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
