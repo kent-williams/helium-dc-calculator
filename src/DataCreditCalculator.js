@@ -23,7 +23,12 @@ export default class DataCreditCalculator extends Component {
     }
 
     currencyFormat(num) {
-        return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        if (num > 1) {
+            return '$' + num.toFixed(6).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
+        else{
+            return '$' + num.toFixed(6);
+        }
     }
   
     calculateHandler = () => {
