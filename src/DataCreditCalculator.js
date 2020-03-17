@@ -8,8 +8,8 @@ export default class DataCreditCalculator extends Component {
         dataPerDevice: 1,
         dataUnit: "Bytes",
         timeUnit: "day",
-        dataUnits: ["Bytes", "KB", "MB", "GB"],
-        timeUnits: ["day", "week", "month", "year"],
+        dataUnits: {"Bytes": 1, "KB": 1000, "MB": 1000000, "GB": 1000000000},
+        timeUnits: {"Day": 1, "Week": 7, "Month": 29.53059, "Year": 365},
     };
 
     // Initializes anything
@@ -19,12 +19,14 @@ export default class DataCreditCalculator extends Component {
     calculateHandler = () => {
         if (this.state.numberOfDevices > 0 && this.state.dataPerDevice > 0) {
 
+            var totalCost = 0;
             console.log(this.state.numberOfDevices);
             console.log(this.state.dataPerDevice);
             console.log(this.state.dataUnit);
             console.log(this.state.timeUnit);
 
-            this.setState({ costResult: "$100" })
+
+            this.setState({ costResult: totalCost })
         } else {
             this.setState({ costResult: "Please enter a positive number of devices" })
         }
@@ -74,9 +76,9 @@ export default class DataCreditCalculator extends Component {
                         onChange={(event) => this.selectHandler(event)}
                         value={this.state.dataUnit}>
 
-                        {this.state.dataUnits.map(cur => (
-                            <option key={cur}>{cur}</option>
-                        ))}
+                        {Object.keys(this.state.dataUnits).map(value => (
+                            <option key={value}>{value}</option>
+                        ))} 
                     </select>
                     per
                     <select
@@ -84,11 +86,10 @@ export default class DataCreditCalculator extends Component {
                         onChange={(event) => this.selectHandler(event)}
                         value={this.state.timeUnit}>
 
-                        {this.state.timeUnits.map(cur => (
-                            <option key={cur}>{cur}</option>
+                        {Object.keys(this.state.timeUnits).map(value => (
+                            <option key={value}>{value}</option>
                         ))}
                     </select>
-
                     <button onClick={this.calculateHandler}>Calculate</button>
                 </div>
                 </h2>
