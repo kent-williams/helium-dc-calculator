@@ -23,7 +23,7 @@ export default class DataCreditCalculator extends Component {
             return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
         }
         else{
-            return '$' + num.toFixed(6);
+            return '$' + num.toFixed(8);
         }
     }
   
