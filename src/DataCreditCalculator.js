@@ -70,7 +70,9 @@ export default class DataCreditCalculator extends Component {
     render() {
         return (
             <div className="DataCreditCalculator">
-                <h2><span>Data Credit Calculator </span> 
+                <h2><span>Data Credit Calculator </span></h2>
+                <h3><span>Current Price of Data Credit = ${dataCreditValue} </span></h3>
+                <h3><span>Bytes per packet = {bytesPerHeliumPacket} </span></h3>
                 <div className="Form">
                     Number of Devices
                     <input
@@ -109,7 +111,6 @@ export default class DataCreditCalculator extends Component {
                     </select>
                     <button onClick={this.calculateHandler}>Calculate</button>
                 </div>
-                </h2>
                 {this.state.costResult && 
                     <h3>{this.state.costResult}</h3>
                 }
