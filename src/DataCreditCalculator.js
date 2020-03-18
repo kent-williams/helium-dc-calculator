@@ -70,9 +70,9 @@ export default class DataCreditCalculator extends Component {
     render() {
         return (
             <div className="DataCreditCalculator">
-                <h2><span>Data Credit Calculator </span></h2>
-                <h3><span>Current Price of Data Credit = ${dataCreditValue} </span></h3>
-                <h3><span>Bytes per packet = {bytesPerHeliumPacket} </span></h3>
+                <h1><span>Helium Data Credit Calculator </span></h1>
+                <h2><span>Current Price of Data Credit = ${dataCreditValue} </span></h2>
+                <h2><span>Bytes per packet = {bytesPerHeliumPacket} </span></h2>
                 <div className="Form">
                     Number of Devices
                     <input

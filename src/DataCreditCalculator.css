@@ -1,4 +1,4 @@
-.Converter {
+.DataCreditCalculator {
     width: 100%;
     padding: 145px 0 100px 0;
     display: block;
@@ -26,26 +26,24 @@
 .Form button {
     padding: 5px 10px;
     border-radius: 5px;
-    background: rgb(11, 170, 59);
+    background: #3399FF;
     color: white;
     border: none;
 }
 
-.Converter h3 {
+.DataCreditCalculator h3 {
+    background-color: #ccc;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.DataCreditCalculator h2{
+    color: black;
+}
+
+.DataCreditCalculator h1 {
     background-color: #ccc;
     border-radius: 10px;
     padding: 15px;
     font-size: 30px;
-}
-
-.Converter h2 span {
-    color: rgb(11, 170, 59);
-}
-
-.backlinkFooter {
-  position: fixed;
-  left: 0;
-  bottom: 10%;
-  width: 100%;
-  text-align: center;
 }
