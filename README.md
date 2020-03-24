@@ -1,5 +1,8 @@
 # Helium Data Credit Calculator
 
+![](https://i.gyazo.com/f7a4ff6b3880300a4aae6e2cfe858d19.png)
+
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
