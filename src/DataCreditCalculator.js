@@ -30,9 +30,22 @@ export default class DataCreditCalculator extends Component {
     calculateHandler = () => {
         if (this.state.numberOfDevices > 0 && this.state.dataPerDevice > 0) {
 
-            var totalBytes = this.state.dataPerDevice * this.state.dataUnits[this.state.dataUnit]; 
-            var totalDays = this.state.timeUnits[this.state.timeUnit];
-            var totalCost = (dataCreditValue * this.state.numberOfDevices * totalBytes * totalDays) / bytesPerHeliumPacket;
+            var totalBytes = 0;
+            var totalDays = 0;
+            var totalCost = 0;
+
+            // Anything less than 24 Bytes still requires an entire packet
+            if (this.state.dataUnit === 'Bytes' && this.state.dataPerDevice < 24)
+            {
+               totalBytes = bytesPerHeliumPacket * this.state.dataUnits[this.state.dataUnit];  
+            }
+            else
+            {
+               totalBytes = this.state.dataPerDevice * this.state.dataUnits[this.state.dataUnit]; 
+            }
+
+            totalDays = this.state.timeUnits[this.state.timeUnit];
+            totalCost = (dataCreditValue * this.state.numberOfDevices * totalBytes * totalDays) / bytesPerHeliumPacket;
 
             this.timeUnitFixed = this.state.timeUnit;
 
