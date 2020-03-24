@@ -74,42 +74,49 @@ export default class DataCreditCalculator extends Component {
                 <h2><span>Current Price of Data Credit = ${dataCreditValue} </span></h2>
                 <h2><span>Bytes per packet = {bytesPerHeliumPacket} </span></h2>
                 <div className="Form">
-                    Number of Devices
-                    <input
-                        name="number of devices"
-                        type="number"
-                        value={this.state.numberOfDevices}
-                        onChange={this.inputHandler}
-                        min="1"
-                    />
-                    Data
-                    <input
-                        name="data per device"
-                        type="number"
-                        value={this.state.dataPerDevice}
-                        onChange={this.inputHandler}
-                        min="1"
-                    />
-                    <select
-                        name="data unit"
-                        onChange={(event) => this.selectHandler(event)}
-                        value={this.state.dataUnit}>
+                    <div>
+                        Number of Devices
+                        <input
+                            name="number of devices"
+                            type="number"
+                            value={this.state.numberOfDevices}
+                            onChange={this.inputHandler}
+                            min="1"
+                        />
+                    </div>
+                    <div>
+                        Data
+                        <input
+                            name="data per device"
+                            type="number"
+                            value={this.state.dataPerDevice}
+                            onChange={this.inputHandler}
+                            min="1"
+                        />
+                        <select
+                            name="data unit"
+                            onChange={(event) => this.selectHandler(event)}
+                            value={this.state.dataUnit}>
 
-                        {Object.keys(this.state.dataUnits).map(value => (
-                            <option key={value}>{value}</option>
-                        ))} 
-                    </select>
-                    per
-                    <select
-                        name="time unit"
-                        onChange={(event) => this.selectHandler(event)}
-                        value={this.state.timeUnit}>
+                            {Object.keys(this.state.dataUnits).map(value => (
+                                <option key={value}>{value}</option>
+                            ))} 
+                        </select>
+                        per Day 
+                    </div>
+                    <div>
+                        Total Cost for Devices per 
+                        <select
+                            name="time unit"
+                            onChange={(event) => this.selectHandler(event)}
+                            value={this.state.timeUnit}>
 
-                        {Object.keys(this.state.timeUnits).map(value => (
-                            <option key={value}>{value}</option>
-                        ))}
-                    </select>
-                    <button onClick={this.calculateHandler}>Calculate</button>
+                            {Object.keys(this.state.timeUnits).map(value => (
+                                <option key={value}>{value}</option>
+                            ))}
+                        </select>
+                        <button onClick={this.calculateHandler}>Calculate</button>
+                    </div>
                 </div>
                 {this.state.costResult && 
                     <h3>{this.state.costResult}</h3>
