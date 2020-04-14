@@ -46,11 +46,11 @@ export default class DataCreditCalculator extends Component {
 
             this.timeUnitFixed = this.state.timeUnit;
 
-            console.log(totalPacketsPerDay);
-            console.log(this.state.numberOfDevices);
-            console.log(this.state.packetsPerDevice);
-            console.log(this.state.dataFrequency);
-            console.log(this.state.timeUnit);
+            // console.log(totalPacketsPerDay);
+            // console.log(this.state.numberOfDevices);
+            // console.log(this.state.packetsPerDevice);
+            // console.log(this.state.dataFrequency);
+            // console.log(this.state.timeUnit);
 
             this.setState({ costResult: this.currencyFormat(totalCost) + ' a ' + this.timeUnitFixed})
         } else {
