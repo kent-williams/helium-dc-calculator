@@ -19,10 +19,16 @@ export default class DataCreditCalculator extends Component {
     timeUnitFixed = "Day";
 
     currencyFormat(num) {
-        if (num > 1) {
+        if (num >= 0.01) {
             return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
         }
-        else{
+        else if (num > 0.0001) {
+            return '$' + num.toFixed(4);
+        }
+        else if (num > 0.000001) {
+            return '$' + num.toFixed(6);
+        }
+        else {
             return '$' + num.toFixed(8);
         }
     }
@@ -30,24 +36,25 @@ export default class DataCreditCalculator extends Component {
     calculateHandler = () => {
         if (this.state.numberOfDevices > 0 && this.state.packetsPerDevice > 0) {
 
-            var totalPackets = 0;
+            var totalPacketsPerDay = 0;
             var totalDays = 0;
             var totalCost = 0;
 
-            totalPackets = this.state.packetsPerDevice * this.state.dataFrequencies[this.state.dataFrequency]; 
+            totalPacketsPerDay = this.state.dataFrequencies[this.state.dataFrequency] / this.state.packetsPerDevice; 
             totalDays = this.state.timeUnits[this.state.timeUnit];
-            totalCost = (dataCreditValue * this.state.numberOfDevices * totalPackets * totalDays) / bytesPerHeliumPacket;
+            totalCost = (dataCreditValue * this.state.numberOfDevices * totalPacketsPerDay * totalDays);
 
             this.timeUnitFixed = this.state.timeUnit;
 
+            console.log(totalPacketsPerDay);
             console.log(this.state.numberOfDevices);
-            console.log(this.state.dataPerDevice);
+            console.log(this.state.packetsPerDevice);
             console.log(this.state.dataFrequency);
             console.log(this.state.timeUnit);
 
             this.setState({ costResult: this.currencyFormat(totalCost) + ' a ' + this.timeUnitFixed})
         } else {
-            this.setState({ costResult: "Please enter a positive number of devices and data." })
+            this.setState({ costResult: "Please enter a positive number of devices and packets." })
         }
     };
 
@@ -89,7 +96,7 @@ export default class DataCreditCalculator extends Component {
                         />
                     </div>
                     <div>
-                        How often Device Transmits
+                        Device Transmits a Packet every
                         <input
                             name="packets per device"
                             type="number"
@@ -97,7 +104,6 @@ export default class DataCreditCalculator extends Component {
                             onChange={this.inputHandler}
                             min="1"
                         />
-                        per
                         <select
                             name="data frequency"
                             onChange={(event) => this.selectHandler(event)}
