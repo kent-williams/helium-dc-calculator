@@ -8,10 +8,10 @@ export default class DataCreditCalculator extends Component {
     state = {
         costResult: null,
         numberOfDevices: 100,
-        dataPerDevice: 1,
-        dataUnit: "Bytes",
+        packetsPerDevice: 1,
+        dataFrequency: "Hour",
         timeUnit: "Day",
-        dataUnits: {"Bytes": 1, "KB": 1000, "MB": 1000000, "GB": 1000000000},
+        dataFrequencies: {"Minute": 1440, "Hour": 24, "Day": 1},
         timeUnits: {"Day": 1, "Week": 7, "Month": 29.53059, "Year": 365},
     };
 
@@ -28,30 +28,21 @@ export default class DataCreditCalculator extends Component {
     }
   
     calculateHandler = () => {
-        if (this.state.numberOfDevices > 0 && this.state.dataPerDevice > 0) {
+        if (this.state.numberOfDevices > 0 && this.state.packetsPerDevice > 0) {
 
-            var totalBytes = 0;
+            var totalPackets = 0;
             var totalDays = 0;
             var totalCost = 0;
 
-            // Anything less than 24 Bytes still requires an entire packet
-            if (this.state.dataUnit === 'Bytes' && this.state.dataPerDevice < 24)
-            {
-               totalBytes = bytesPerHeliumPacket * this.state.dataUnits[this.state.dataUnit];  
-            }
-            else
-            {
-               totalBytes = this.state.dataPerDevice * this.state.dataUnits[this.state.dataUnit]; 
-            }
-
+            totalPackets = this.state.packetsPerDevice * this.state.dataFrequencies[this.state.dataFrequency]; 
             totalDays = this.state.timeUnits[this.state.timeUnit];
-            totalCost = (dataCreditValue * this.state.numberOfDevices * totalBytes * totalDays) / bytesPerHeliumPacket;
+            totalCost = (dataCreditValue * this.state.numberOfDevices * totalPackets * totalDays) / bytesPerHeliumPacket;
 
             this.timeUnitFixed = this.state.timeUnit;
 
             console.log(this.state.numberOfDevices);
             console.log(this.state.dataPerDevice);
-            console.log(this.state.dataUnit);
+            console.log(this.state.dataFrequency);
             console.log(this.state.timeUnit);
 
             this.setState({ costResult: this.currencyFormat(totalCost) + ' a ' + this.timeUnitFixed})
@@ -65,15 +56,15 @@ export default class DataCreditCalculator extends Component {
         if (event.target.name === "number of devices") {
             this.setState({ numberOfDevices: event.target.value })
         }
-        if (event.target.name === "data per device") {
-            this.setState({ dataPerDevice: event.target.value })
+        if (event.target.name === "packets per device") {
+            this.setState({ packetsPerDevice: event.target.value })
         }
     }
 
     // Updates the states based on the dropdown that was changed
     selectHandler = (event) => {
-        if (event.target.name === "data unit") {
-            this.setState({ dataUnit: event.target.value })
+        if (event.target.name === "data frequency") {
+            this.setState({ dataFrequency: event.target.value })
         }
         if (event.target.name === "time unit") {
             this.setState({ timeUnit: event.target.value })
@@ -98,24 +89,24 @@ export default class DataCreditCalculator extends Component {
                         />
                     </div>
                     <div>
-                        Data
+                        How often Device Transmits
                         <input
-                            name="data per device"
+                            name="packets per device"
                             type="number"
-                            value={this.state.dataPerDevice}
+                            value={this.state.packetsPerDevice}
                             onChange={this.inputHandler}
                             min="1"
                         />
+                        per
                         <select
-                            name="data unit"
+                            name="data frequency"
                             onChange={(event) => this.selectHandler(event)}
-                            value={this.state.dataUnit}>
+                            value={this.state.dataFrequency}>
 
-                            {Object.keys(this.state.dataUnits).map(value => (
+                            {Object.keys(this.state.dataFrequencies).map(value => (
                                 <option key={value}>{value}</option>
                             ))} 
                         </select>
-                        per Day 
                     </div>
                     <div>
                         Total Cost for Devices per 
